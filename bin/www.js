@@ -23,28 +23,7 @@ app.set('port', port)
  * Create HTTP server.
  */
 
-let server
- 
-/**
- * When we're in development we want to run our environment in https so that we
- * are able to keep our Google OAuth application set to in production. 
- * 
- * When we're in production Herkou will manage our certificates for us so we
- * still want to run our app in http, which lets heroku manage this process.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  const homedir = os.homedir()
-
-  const options = {
-    key: fs.readFileSync(`${homedir}/certs/localhost/localhost.key`),
-    cert: fs.readFileSync(`${homedir}/certs/localhost/localhost.crt`)
-  }
-
-  server = https.createServer(options, app)
-} else {
-  server = http.createServer(app)
-}
+let server = http.createServer(app)
 
 /**
  * Listen on provided port, on all network interfaces.
