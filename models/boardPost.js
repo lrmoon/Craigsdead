@@ -1,6 +1,9 @@
 import mongoose from 'mongoose'
 
-const replySchema = new Schema({
+const Schema = mongoose.Schema;
+
+const replySchema = new Schema(
+    {
     author: {type: Schema.Types.ObjectId, ref: 'Profile'},
     content: {
         type: String,
@@ -15,6 +18,10 @@ const boardPostSchema = new mongoose.Schema(
     title: String,
     content: String,
     author: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
+    date:{
+        type: Date,
+        default: () => new Date()
+    },
     replies:[replySchema],
   },
   {

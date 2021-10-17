@@ -1,0 +1,48 @@
+<%- include('./../partials/nav') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Newsboard</h1>
+    <table id="list">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>Date/Time</th>
+          </tr>
+        </thead>
+   <% if(boardPosts.length > 0){ %>
+    
+        <% boardPosts.forEach(function(boardPost) { %>
+          <tr>
+            <td>
+            <%= boardPost.title %> 
+            </td>
+            <td>
+            <%= boardPost.content %> 
+            </td>
+            <td>
+            <%=boardPost.author %> 
+            </td>
+            <td>
+            <%=boardPost.date%>
+            </td>
+            <td>
+                <a href="/boardposts/<%= boardPost._id%>">Details</a>
+            </td>
+          
+        <% }) %>
+        <% } %>
+          </tr>
+   
+    
+  </body>
+</html>

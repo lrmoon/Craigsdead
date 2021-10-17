@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url'
 import createError from 'http-errors'
 import session from 'express-session'
 import logger from 'morgan'
+import { passUserToView } from './middleware/middleware.js'
 import methodOverride from 'method-override'
 import passport from 'passport'
 
@@ -20,6 +21,9 @@ import('./config/passport.js')
 // require routes
 import { router as indexRouter } from './routes/index.js'
 import { router as authRouter } from './routes/auth.js'
+import { router as profilesRouter } from './routes/profiles.js'
+import { router as jobsRouter } from './routes/jobs.js'
+import { router as boardPostsRouter } from './routes/boardPosts.js'
 
 // view engine setup
 app.set(
@@ -28,6 +32,7 @@ app.set(
 )
 app.set('view engine', 'ejs')
 
+app.use(passUserToView)
 // middleware
 app.use(methodOverride('_method'))
 app.use(logger('dev'))
@@ -58,6 +63,9 @@ app.use(passport.session())
 // router middleware
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
+app.use('/profiles', profilesRouter)
+app.use('/jobs', jobsRouter)
+app.use('/boardposts', boardPostsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
