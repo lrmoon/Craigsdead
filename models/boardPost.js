@@ -15,9 +15,19 @@ const replySchema = new Schema(
 
 const boardPostSchema = new mongoose.Schema(
   {
-    title: String,
-    content: String,
-    author: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
+    title: {
+        type: String,
+        required: true,
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Profile",
+        default: mongoose.Schema.Types.ObjectId
+    },
     date:{
         type: Date,
         default: () => new Date()

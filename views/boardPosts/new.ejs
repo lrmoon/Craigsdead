@@ -1,0 +1,32 @@
+<%- include('./../partials/nav') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Post</title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <form id="new-form" action="/boardposts" method="POST">
+      <div>
+        <label for="title-input">Job Title:</label>
+        <select name="title" id="title">
+            <option value="Embalmer">Embalmer</option>
+            <option value="Transporter">Transporter</option>
+          </select>
+      </div>
+      <div>
+        <label for="content-input">Job description:</label>
+        <input type="text" name="content" id="boardpost-content-input">
+      </div>
+      <div>
+        <label for="date">Time:</label>
+        <input type="datetime-local" name="date">
+      </div>
+      <button type="submit">Add Flight</button>
+    </form>
+    
+</body>
+</html>
