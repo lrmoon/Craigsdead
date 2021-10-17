@@ -26,7 +26,8 @@ const boardPostSchema = new mongoose.Schema(
     author: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: "Profile",
-        default: mongoose.Schema.Types.ObjectId
+        default: mongoose.Schema.Types.ObjectId,
+        ref: "Profile",
     },
     date:{
         type: Date,
