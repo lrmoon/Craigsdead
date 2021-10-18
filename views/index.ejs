@@ -1,0 +1,29 @@
+<%- include('./partials/html-head') %>
+
+
+<main>
+  <h1>Welcome to Craigsdead</h1>
+  <% if (user?.profile.avatar) { %>
+    <div>
+      <img 
+        src="<%= user.profile.avatar %>" 
+        alt="<%= user.profile.name %> avatar"
+      >
+    </div>
+    <div>
+      <a href="/auth/logout" > Sign Out</a>
+    </div>
+  
+    <a href="/profiles/<%= user.profile._id %>"> Complete your profile to begin</a>
+  <% } %>
+  <% if(!user){ %>
+  <a href="/auth/google" class="siwg-link right item">
+    <button type="submit" class="siwg">
+      <img id="siwg-image" alt="Sign in with Google to begin" />
+    </button>
+  </a>
+<% } %>
+
+</main>
+
+<%- include('./partials/footer') %>
