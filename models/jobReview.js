@@ -7,7 +7,8 @@ const jobReviewSchema = new mongoose.Schema(
     rating:{
         type: Number,
         min: 1,
-        max: 5
+        max: 5,
+        default: 0
     },
     content: String,
     job: {type: mongoose.Schema.Types.ObjectId, ref: "Job"},

@@ -2,12 +2,13 @@ import {BoardPost} from '../models/boardPost.js'
 
 function index(req,res){
     BoardPost.find({})
-    //
     .populate('author')
     .then(boardPosts =>{
+        console.log(req.user)
        res.render('boardPosts/index', {
         boardPosts,
-        title: 'News Board'
+        user: req.user
+
     })
     })
     .catch(err => {
@@ -16,8 +17,11 @@ function index(req,res){
 }
 
 function newPost(req,res){
+   
+    console.log(req.user)
     res.render('boardPosts/new',{ 
         title: "Add Post",
+        user: res.locals.user
         
     });
 }
@@ -35,18 +39,24 @@ function create(req, res) {
 
   function show(req, res) {
     BoardPost.findById({}, function(err,boardPosts){
-        res.render('boardposts/index', {
+        res.render('boardposts/show', {
             boardPosts,
             title: 'Job Details'
         })
     })
 }
 
+function deleteBoardPost(req, res){
+    BoardPost.findByIdAndDelete(req.params.id)
+        .then(results => res.redirect('/boardposts'))
+        .catch(err => console.log(err))
+}
 
 
 export{
     index,
     newPost as new,
     show,
-    create
+    create,
+    deleteBoardPost as delete
 }

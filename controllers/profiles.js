@@ -1,5 +1,6 @@
 import { Profile } from "../models/profile.js"
 import { Job } from "../models/job.js"
+import { User } from "../models/user.js"
 
 function update(req, res) {
     Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -26,34 +27,16 @@ function update(req, res) {
     })
   }
   
+  
   function show(req, res) {
-    Profile.findById(req.params.id)
-    // Populate friends to get profile data for each of them
-    .populate('friends')
-    .then(profile => {
-      // Use the profile clicked to find games belonging to that user
-      Job.find({ collectedBy: profile._id })
-      .then(jobs => {
-        // Find the profile of the current logged in user
-        Profile.findById(req.user.profile)
-        .then(userProfile => {
-          res.render('profiles/show', {
-            // Profile of the user clicked
-            profile,
-            // Profile of the logged in user
-            userProfile,
-            title: `${profile.name}'s profile`,
-            jobs
-          })
+      Profile.findById(req.params.id, function(error, profile) {
+        res.render('profiles/show', {
+          profile,
+          error: error,
+          user: res.user
         })
       })
-  
-    })
-    .catch(err => {
-      console.log(err)
-      res.redirect('/')
-    })
-  }
+    }
 
   function index(req, res) {
     Profile.find({})

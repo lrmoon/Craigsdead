@@ -4,8 +4,14 @@ import mongoose from 'mongoose'
 
 const jobSchema = new mongoose.Schema(
   {
-    title: String,
-    description: String,
+    title:{
+      type: String,
+      default: "No job"
+    },
+    description: {
+      type: String,
+      default: "No description"
+    },
     employedBy: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
     reviews: {type: mongoose.Schema.Types.ObjectId, ref: "JobReview"},
   },
