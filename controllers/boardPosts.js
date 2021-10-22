@@ -21,7 +21,7 @@ function newPost(req,res){
     console.log(req.user)
     res.render('boardPosts/new',{ 
         title: "Add Post",
-        user: res.locals.user
+        user: req.user
         
     });
 }
@@ -39,9 +39,11 @@ function create(req, res) {
 
   function show(req, res) {
     BoardPost.findById({}, function(err,boardPosts){
+        console.log(boardPosts)
         res.render('boardposts/show', {
             boardPosts,
-            title: 'Job Details'
+            title: 'Job Details',
+            user: req.user
         })
     })
 }

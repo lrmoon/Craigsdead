@@ -29,8 +29,11 @@ function update(req, res) {
   
   
   function show(req, res) {
-      Profile.findById(req.params.id, function(error, profile) {
+    console.log("1",res.user)  
+    Profile.findById(req.params.id, function(error, profile) {
+        console.log(profile);
         res.render('profiles/show', {
+          
           profile,
           error: error,
           user: res.user
