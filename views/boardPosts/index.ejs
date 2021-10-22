@@ -234,15 +234,16 @@ $(document).ready(function(){
                                 <a href="/boardposts/<%= boardPost._id%>">Details</a>
                             </td>
                             <td>
-                              <form 
+                                <% if(user?.profile._id.toString() === boardPost.author._id.toString()){ %> 
+                                <form 
                                   action="/boardposts/<%= boardPost._id %>?_method=DELETE"
                                   class="delete-form"
                                   method="POST"
                                 >
-                               
-                              <% if(user?.profile._id.toString() === boardPost.author._id.toString()){ %> 
-                              <button href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></button>
-                              <button id="deletebutton" type='submit'class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></button>
+                               <button id="deletebutton" type='submit'class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></button>
+                              
+                              
+                              
                                <% } %>    
                             </form>
                             </td>

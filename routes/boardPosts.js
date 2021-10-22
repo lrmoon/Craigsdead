@@ -9,6 +9,8 @@ router.get('/new',isLoggedIn, boardPostsCtrl.new);
 router.post('/', boardPostsCtrl.create);
 router.get('/:id', isLoggedIn, boardPostsCtrl.show);
 router.post('/:id', boardPostsCtrl.createReply )
+router.put('/:id', boardPostsCtrl.update);
+router.get('/:id/edit', isLoggedIn, boardPostsCtrl.edit);
 
 router.delete('/:id', boardPostsCtrl.delete)
 

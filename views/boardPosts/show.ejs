@@ -56,6 +56,9 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        <% if(user?.profile._id.toString() === boardPosts.author._id.toString()){ %> 
+                                        <a href="<%=boardPosts._id%>/edit"  class="btn btn-primary">Edit Post</a>
+                                        <% } %> 
                                     </div>
                                 </div>
                                 <div class="col-md-5 d-flex align-items-stretch">

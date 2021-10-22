@@ -17,8 +17,6 @@ function index(req,res){
 }
 
 function newPost(req,res){
-   
-    console.log(req.user)
     res.render('boardPosts/new',{ 
         title: "Add Post",
         user: req.user
@@ -64,6 +62,36 @@ function createReply(req, res){
     })
 }
 
+function edit(req, res) {
+    console.log(req.body)
+    BoardPost.findById(req.params.id)
+    .then(boardPost => {
+      res.render('boardPosts/edit', {
+        title: `Edit Your Post`,
+        boardPost,
+        user: req.user
+        
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/')
+    })
+  }
+
+
+  function update(req, res) {
+    
+    BoardPost.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(boardPost => {
+      res.redirect(`/boardposts`)
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/')
+    })
+  }
+
 
 export{
     index,
@@ -71,5 +99,7 @@ export{
     show,
     create,
     deleteBoardPost as delete,
-    createReply
+    createReply,
+    edit,
+    update
 }
