@@ -4,10 +4,16 @@ const Schema = mongoose.Schema;
 
 const replySchema = new Schema(
     {
-    author: {type: Schema.Types.ObjectId, ref: 'Profile'},
+    name: {
+      type: String,
+      required: true
+    },
     content: {
         type: String,
         required: true
+    },
+    email: {
+      type: String
     }
   },{
     timestamps: true

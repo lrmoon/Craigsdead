@@ -8,6 +8,7 @@ router.get('/new',isLoggedIn, boardPostsCtrl.new);
 
 router.post('/', boardPostsCtrl.create);
 router.get('/:id', isLoggedIn, boardPostsCtrl.show);
+router.post('/:id', boardPostsCtrl.createReply )
 
 router.delete('/:id', boardPostsCtrl.delete)
 

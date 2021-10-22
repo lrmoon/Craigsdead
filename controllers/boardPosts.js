@@ -38,8 +38,9 @@ function create(req, res) {
   }
 
   function show(req, res) {
-    BoardPost.findById({}, function(err,boardPosts){
-        console.log(boardPosts)
+    BoardPost.findById(req.params.id)
+        .populate('author')
+        .then(boardPosts =>{
         res.render('boardposts/show', {
             boardPosts,
             title: 'Job Details',
@@ -54,11 +55,21 @@ function deleteBoardPost(req, res){
         .catch(err => console.log(err))
 }
 
+function createReply(req, res){
+    BoardPost.findById(req.params.id, function(err, boardPost){
+        boardPost.replies.push(req.body);
+        boardPost.save(function(err){
+            res.redirect('/boardposts');
+        })
+    })
+}
+
 
 export{
     index,
     newPost as new,
     show,
     create,
-    deleteBoardPost as delete
+    deleteBoardPost as delete,
+    createReply
 }
