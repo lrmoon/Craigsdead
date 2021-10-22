@@ -1,6 +1,6 @@
 import { Profile } from "../models/profile.js"
-import { Job } from "../models/job.js"
-import { User } from "../models/user.js"
+
+
 
 function update(req, res) {
     Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -29,13 +29,18 @@ function update(req, res) {
   
   
   function show(req, res) {
-    console.log("1",res.user)  
-    Profile.findById(req.params.id, function(error, profile) {
-        console.log(profile);
+    console.log(res.user)  
+    Profile.findById(req.params.id)
+    
+
+    .then(profile => {
+      console.log("im here",profile)
+        
         res.render('profiles/show', {
           
           profile,
-          error: error,
+          
+          
           user: res.user
         })
       })

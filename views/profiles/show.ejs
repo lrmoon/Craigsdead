@@ -33,12 +33,12 @@
           <div class="container py-4">
             <table class="table table-dark table-striped align-middle">
               <tbody>
-                <% if (user.profile._id.toString() === profile._id.toString()) { %>
+                
                   <tr>
                     <td>Google Email:</td>
-                    <td><%= user.email %></td>
+                    <td><%=  %></td>
                   </tr>
-                <% } %>
+               
                 <tr>
                   <td>Name:</td>
                   <td><%= profile.name %></td>
@@ -57,7 +57,7 @@
               </tbody>
             </table>
           </div>
-          <% if (user.profile._id.toString() === profile._id.toString()) { %>
+          
             <%# This is where we'll add the UI to edit a profile %> 
             <a 
               class="btn btn-warning"
@@ -73,7 +73,7 @@
             >
               Logout
             </a>
-          <% } %>
+            
 </body>
 </html>
   
